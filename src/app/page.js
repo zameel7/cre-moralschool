@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
-const DISTRICTS_API = "https://guideportal.wisdomislam.org/api/get-from-guide/wisdom_districts";
-const ZONES_API = "https://guideportal.wisdomislam.org/api/get-from-guide/zones?district_type=wisdom&district_id=";
-const SUBMIT_API = "https://guideportal.wisdomislam.org/api/create-from-guide/moral-school-registration";
+const DISTRICTS_API = process.env.NEXT_PUBLIC_DISTRICTS_API || "https://guideportal.wisdomislam.org/api/get-from-guide/wisdom_districts";
+const ZONES_API = process.env.NEXT_PUBLIC_ZONES_API || "https://guideportal.wisdomislam.org/api/get-from-guide/zones?district_type=wisdom&district_id=";
+const SUBMIT_API = process.env.NEXT_PUBLIC_SUBMIT_API || "https://guideportal.wisdomislam.org/api/create-from-guide/moral-school-registration";
 
 const HERO_PLACEHOLDER = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80";
 
