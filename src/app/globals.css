@@ -76,6 +76,17 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+  --font-malayalam: var(--font-malayalam);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.malayalam {
+  font-family: var(--font-malayalam), "Noto Sans Malayalam", Manjari, Rachana, sans-serif;
 }
 
 .dark {
