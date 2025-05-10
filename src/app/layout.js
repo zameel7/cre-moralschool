@@ -19,8 +19,8 @@ const notoMalayalam = Noto_Sans_Malayalam({
 });
 
 export const metadata = {
-  title: "CRE | Moral School Registration",
-  description: "Register for CRE | Moral School (Summerise)",
+  title: "CRE Registration",
+  description: "Register for CRE | Continuing Religious Education",
 };
 
 export default function RootLayout({ children }) {

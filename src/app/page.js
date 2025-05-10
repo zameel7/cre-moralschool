@@ -159,8 +159,14 @@ export default function HomePage() {
           priority
         />
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white drop-shadow-lg">CRE | Moral School</h1>
-          <p className="text-lg md:text-2xl text-white/90 max-w-xl mx-auto drop-shadow malayalam">
+          <Image
+            src="/logo/dark.png"
+            alt="CRE Logo"
+            width={200}
+            height={200}
+            className="block dark:hidden mb-4"
+          />
+          <p className="text-lg md:text-2xl text-white/90 max-w-xl mx-auto drop-shadow malayalam text-center font-bold">
             പതിറ്റാണ്ടുകളായി വിദ്യാർത്ഥി തലമുറയിൽ ധാർമിക വിപ്ലവം സൃഷ്ടിച്ചു കൊണ്ടിരിക്കുന്ന വൈജ്ഞാനിക ഗോപുരം... CRE..
           </p>
         </div>
@@ -172,7 +178,7 @@ export default function HomePage() {
           <div className="flex-1 flex flex-col items-start">
             <h2 className="text-2xl md:text-3xl font-extrabold mb-4 text-primary text-left">About</h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-left">
-              <span className="block mb-2">CRE Moral School is a transformative educational movement, inspiring generations of students with moral and intellectual values.</span>
+              <span className="block mb-2">CRE, Continuing Religious Education, is a transformative educational movement, inspiring generations of students with moral and intellectual values.</span>
               <span className="block mb-2">Our mission is to nurture a generation of students who are not only academically excellent but also morally upright and socially responsible.</span>
               <span className="block">Join us for a unique learning experience that blends tradition with modernity.</span>
             </p>
@@ -311,7 +317,7 @@ export default function HomePage() {
               className="hidden dark:block"
             />
           </div>
-          <div className="text-sm text-muted-foreground">© 2025 CRE | Moral School. All rights reserved.</div>
+          <div className="text-sm text-muted-foreground">© 2025 CRE | Continuing Religious Education. All rights reserved.</div>
           <div className="text-sm text-muted-foreground flex items-center gap-3">
             Contact: <span className="font-medium">wisdomstudents@gmail.com</span>
             <a href="https://www.instagram.com/wisdomstudents/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-primary">
@@ -324,7 +330,7 @@ export default function HomePage() {
     <path d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z"></path>
 </svg>
             </a>
-            <a href="https://api.whatsapp.com/send/?phone=%2B918714312886&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:text-primary">
+            <a href="https://api.whatsapp.com/send/?phone=%2B918547256709&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:text-primary">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24">
     <path d="M19.077,4.928C17.191,3.041,14.683,2.001,12.011,2c-5.506,0-9.987,4.479-9.989,9.985 c-0.001,1.76,0.459,3.478,1.333,4.992L2,22l5.233-1.237c1.459,0.796,3.101,1.215,4.773,1.216h0.004 c5.505,0,9.986-4.48,9.989-9.985C22.001,9.325,20.963,6.816,19.077,4.928z M16.898,15.554c-0.208,0.583-1.227,1.145-1.685,1.186 c-0.458,0.042-0.887,0.207-2.995-0.624c-2.537-1-4.139-3.601-4.263-3.767c-0.125-0.167-1.019-1.353-1.019-2.581 S7.581,7.936,7.81,7.687c0.229-0.25,0.499-0.312,0.666-0.312c0.166,0,0.333,0,0.478,0.006c0.178,0.007,0.375,0.016,0.562,0.431 c0.222,0.494,0.707,1.728,0.769,1.853s0.104,0.271,0.021,0.437s-0.125,0.27-0.249,0.416c-0.125,0.146-0.262,0.325-0.374,0.437 c-0.125,0.124-0.255,0.26-0.11,0.509c0.146,0.25,0.646,1.067,1.388,1.728c0.954,0.85,1.757,1.113,2.007,1.239 c0.25,0.125,0.395,0.104,0.541-0.063c0.146-0.166,0.624-0.728,0.79-0.978s0.333-0.208,0.562-0.125s1.456,0.687,1.705,0.812 c0.25,0.125,0.416,0.187,0.478,0.291C17.106,14.471,17.106,14.971,16.898,15.554z"></path>
 </svg>
