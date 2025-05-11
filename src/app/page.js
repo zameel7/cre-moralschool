@@ -230,7 +230,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-center mb-4 text-primary">Register Now</h2>
           <form className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 bg-transparent p-0" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
-              <Label>District</Label>
+              <Label>District <span className="text-red-500">*</span></Label>
               <Select value={form.district} onValueChange={(v) => handleChange('district', v)} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select District" />
@@ -247,7 +247,7 @@ export default function HomePage() {
               )}
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Area</Label>
+              <Label>Area <span className="text-red-500">*</span></Label>
               <Select value={form.zone} onValueChange={(v) => handleChange('zone', v)} disabled={!form.district || form.district === 'other'} required={form.district !== 'other'}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select Area" />
@@ -264,11 +264,11 @@ export default function HomePage() {
               )}
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Name</Label>
+              <Label>Name <span className="text-red-500">*</span></Label>
               <Input value={form.name} onChange={e => handleChange('name', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Sex</Label>
+              <Label>Sex <span className="text-red-500">*</span></Label>
               <Select value={form.sex} onValueChange={(v) => handleChange('sex', v)} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select Sex" />
@@ -280,27 +280,27 @@ export default function HomePage() {
               </Select>
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Age</Label>
+              <Label>Age <span className="text-red-500">*</span></Label>
               <Input type="number" min="1" value={form.age} onChange={e => handleChange('age', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Phone Number</Label>
+              <Label>Phone Number <span className="text-red-500">*</span></Label>
               <Input type="tel" value={form.phone_number} onChange={e => handleChange('phone_number', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Parents Number</Label>
+              <Label>Parents Number <span className="text-red-500">*</span></Label>
               <Input type="tel" value={form.parents_number} onChange={e => handleChange('parents_number', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Place</Label>
+              <Label>Place <span className="text-red-500">*</span></Label>
               <Input value={form.place} onChange={e => handleChange('place', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2 md:col-span-2">
-              <Label>Class / Course</Label>
+              <Label>Class / Course <span className="text-red-500">*</span></Label>
               <Input value={form.class} onChange={e => handleChange('class', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2 md:col-span-2">
-              <Label>School / Campus</Label>
+              <Label>School / Campus <span className="text-red-500">*</span></Label>
               <Input value={form.school} onChange={e => handleChange('school', e.target.value)} required />
             </div>
             <div className="md:col-span-2 flex flex-col gap-2">
