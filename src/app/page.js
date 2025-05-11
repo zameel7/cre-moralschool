@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 
 const DISTRICTS_API = process.env.NEXT_PUBLIC_DISTRICTS_API || "https://guideportal.wisdomislam.org/api/get-from-guide/wisdom_districts";
 const ZONES_API = process.env.NEXT_PUBLIC_ZONES_API || "https://guideportal.wisdomislam.org/api/get-from-guide/zones?district_type=wisdom&district_id=";
-const SUBMIT_API = process.env.NEXT_PUBLIC_SUBMIT_API || "https://guideportal.wisdomislam.org/api/create-from-guide/moral-school-registration";
+const SUBMIT_API = process.env.NEXT_PUBLIC_SUBMIT_API || "https://guideportal.wisdomislam.org/api/p/cre-registration";
 
 const HERO_PLACEHOLDER = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80";
 
@@ -21,11 +21,13 @@ export default function HomePage() {
     name: "",
     sex: "",
     age: "",
-    phone: "",
-    parentPhone: "",
+    phone_number: "",
+    parents_number: "",
     place: "",
     class: "",
     school: "",
+    district_other: "",
+    zone_other: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -61,16 +63,18 @@ export default function HomePage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          district: form.district,
-          zone: form.zone,
           name: form.name,
-          sex: form.sex,
-          age: form.age,
-          phone: form.phone,
-          parent_phone: form.parentPhone,
+          sex: form.sex.toLowerCase(),
+          age: Number(form.age),
+          phone_number: form.phone_number,
+          parents_number: form.parents_number,
           place: form.place,
           class: form.class,
           school: form.school,
+          district_id: form.district ? Number(form.district) : null,
+          zone_id: form.zone ? Number(form.zone) : null,
+          district_other: form.district_other,
+          zone_other: form.zone_other,
         }),
       });
       if (!res.ok) throw new Error("Registration failed");
@@ -81,11 +85,13 @@ export default function HomePage() {
         name: "",
         sex: "",
         age: "",
-        phone: "",
-        parentPhone: "",
+        phone_number: "",
+        parents_number: "",
         place: "",
         class: "",
         school: "",
+        district_other: "",
+        zone_other: "",
       });
     } catch (err) {
       setError(err.message || "Something went wrong");
@@ -219,6 +225,7 @@ export default function HomePage() {
                   ))}
                 </SelectContent>
               </Select>
+              <Input className="mt-2" placeholder="Other District (if not listed)" value={form.district_other} onChange={e => handleChange('district_other', e.target.value)} />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Area</Label>
@@ -232,6 +239,7 @@ export default function HomePage() {
                   ))}
                 </SelectContent>
               </Select>
+              <Input className="mt-2" placeholder="Other Area (if not listed)" value={form.zone_other} onChange={e => handleChange('zone_other', e.target.value)} />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Name</Label>
@@ -244,8 +252,8 @@ export default function HomePage() {
                   <SelectValue placeholder="Select Sex" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Male">Male</SelectItem>
-                  <SelectItem value="Female">Female</SelectItem>
+                  <SelectItem value="male">Male</SelectItem>
+                  <SelectItem value="female">Female</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -255,11 +263,11 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col gap-2">
               <Label>Phone Number</Label>
-              <Input type="tel" value={form.phone} onChange={e => handleChange('phone', e.target.value)} required />
+              <Input type="tel" value={form.phone_number} onChange={e => handleChange('phone_number', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Parents Number</Label>
-              <Input type="tel" value={form.parentPhone} onChange={e => handleChange('parentPhone', e.target.value)} required />
+              <Input type="tel" value={form.parents_number} onChange={e => handleChange('parents_number', e.target.value)} required />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Place</Label>
