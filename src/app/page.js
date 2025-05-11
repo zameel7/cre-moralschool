@@ -41,12 +41,18 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    if (form.district) {
+    if (form.district && form.district !== 'other') {
       fetch(ZONES_API + form.district)
         .then((res) => res.json())
         .then((data) => setZones((data.data && data.data.list) ? data.data.list : []));
     } else {
       setZones([]);
+      // If district is 'other', set zone to 'other' (0)
+      if (form.district === 'other') {
+        setForm((prev) => ({ ...prev, zone: 'other' }));
+      } else {
+        setForm((prev) => ({ ...prev, zone: '' }));
+      }
     }
   }, [form.district]);
 
@@ -59,7 +65,15 @@ export default function HomePage() {
     setLoading(true);
     setError("");
     setSuccess(false);
+    // Validation for required fields (in case browser doesn't catch)
+    if (!form.name || !form.sex || !form.age || !form.phone_number || !form.parents_number || !form.place || !form.class || !form.school || !form.district || (form.district === 'other' && !form.district_other) || ((form.zone === '' || !form.zone) && form.district !== 'other') || ((form.zone === 'other' || form.district === 'other') && !form.zone_other)) {
+      setError("Please fill all required fields.");
+      setLoading(false);
+      return;
+    }
     try {
+      const district_id = form.district === 'other' ? 0 : (form.district ? Number(form.district) : null);
+      const zone_id = (form.zone === 'other' || form.district === 'other') ? 0 : (form.zone ? Number(form.zone) : null);
       const res = await fetch(SUBMIT_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -72,10 +86,10 @@ export default function HomePage() {
           place: form.place,
           class: form.class,
           school: form.school,
-          district_id: form.district ? Number(form.district) : null,
-          zone_id: form.zone ? Number(form.zone) : null,
-          district_other: form.district_other,
-          zone_other: form.zone_other,
+          district_id,
+          zone_id,
+          district_other: form.district === 'other' ? form.district_other : '',
+          zone_other: (form.zone === 'other' || form.district === 'other') ? form.zone_other : '',
         }),
       });
       if (!res.ok) throw new Error("Registration failed");
@@ -217,7 +231,7 @@ export default function HomePage() {
           <form className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 bg-transparent p-0" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
               <Label>District</Label>
-              <Select value={form.district} onValueChange={(v) => handleChange('district', v)}>
+              <Select value={form.district} onValueChange={(v) => handleChange('district', v)} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select District" />
                 </SelectTrigger>
@@ -225,13 +239,16 @@ export default function HomePage() {
                   {districts.map((d) => (
                     <SelectItem key={d.id} value={String(d.id)}>{d.name}</SelectItem>
                   ))}
+                  <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
-              <Input className="mt-2" placeholder="Other District (if not listed)" value={form.district_other} onChange={e => handleChange('district_other', e.target.value)} />
+              {form.district === 'other' && (
+                <Input className="mt-2" placeholder="Other District (if not listed)" value={form.district_other} onChange={e => handleChange('district_other', e.target.value)} required />
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <Label>Area</Label>
-              <Select value={form.zone} onValueChange={(v) => handleChange('zone', v)} disabled={!form.district}>
+              <Select value={form.zone} onValueChange={(v) => handleChange('zone', v)} disabled={!form.district || form.district === 'other'} required={form.district !== 'other'}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select Area" />
                 </SelectTrigger>
@@ -239,9 +256,12 @@ export default function HomePage() {
                   {zones.map((z) => (
                     <SelectItem key={z.id} value={String(z.id)}>{z.name}</SelectItem>
                   ))}
+                  <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
-              <Input className="mt-2" placeholder="Other Area (if not listed)" value={form.zone_other} onChange={e => handleChange('zone_other', e.target.value)} />
+              {(form.zone === 'other' || form.district === 'other') && (
+                <Input className="mt-2" placeholder="Other Area (if not listed)" value={form.zone_other} onChange={e => handleChange('zone_other', e.target.value)} required />
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <Label>Name</Label>
@@ -249,7 +269,7 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col gap-2">
               <Label>Sex</Label>
-              <Select value={form.sex} onValueChange={(v) => handleChange('sex', v)}>
+              <Select value={form.sex} onValueChange={(v) => handleChange('sex', v)} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select Sex" />
                 </SelectTrigger>
