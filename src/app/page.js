@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { toast } from 'sonner';
 
 const DISTRICTS_API = process.env.NEXT_PUBLIC_DISTRICTS_API || "https://guideportal.wisdomislam.org/api/get-from-guide/wisdom_districts";
 const ZONES_API = process.env.NEXT_PUBLIC_ZONES_API || "https://guideportal.wisdomislam.org/api/get-from-guide/zones?district_type=wisdom&district_id=";
@@ -93,6 +94,7 @@ export default function HomePage() {
         district_other: "",
         zone_other: "",
       });
+      toast.success('Registration successful! Thank you for registering.');
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -283,7 +285,6 @@ export default function HomePage() {
             </div>
             <div className="md:col-span-2 flex flex-col gap-2">
               {error && <div className="text-red-500 text-sm text-center">{error}</div>}
-              {success && <div className="text-green-600 text-sm text-center">Registration successful!</div>}
               <Button type="submit" className="w-full mt-2" disabled={loading}>
                 {loading ? 'Submitting...' : 'Register'}
               </Button>
